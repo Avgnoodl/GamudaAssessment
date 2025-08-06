@@ -6,7 +6,7 @@ from models import Match, MatchEvent
 
 
 def seed() -> None:
-    """Reset the database and insert extensive mock football data."""
+    """Reset the database and insert extensive mock football data with diverse events."""
     # Start fresh
     drop_tables()
     create_tables()
@@ -23,11 +23,20 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 26, 15, 0),
             status="live",
             events=[
+                MatchEvent(minute=5, team="Chelsea", player="Ben Chilwell", type="corner"),
+                MatchEvent(minute=8, team="Arsenal", player="William Saliba", type="handball"),
+                MatchEvent(minute=10, team="Chelsea", player="Enzo Fernández", type="offside"),
+                MatchEvent(minute=18, team="Arsenal", player="Martin Ødegaard", type="free_kick"),
                 MatchEvent(minute=23, team="Arsenal", player="Bukayo Saka", type="goal"),
+                MatchEvent(minute=37, team="Arsenal", player="Gabriel Jesus", type="penalty_goal"),
                 MatchEvent(minute=45, team="Chelsea", player="Raheem Sterling", type="goal"),
                 MatchEvent(minute=53, team="Arsenal", player="Declan Rice", type="yellow_card"),
+                MatchEvent(minute=58, team="Chelsea", player="Reece James", type="injury"),
+                MatchEvent(minute=65, team="Chelsea", player="Cole Palmer", type="penalty_missed"),
                 MatchEvent(minute=70, team="Arsenal", player="Gabriel Martinelli", type="goal"),
                 MatchEvent(minute=75, team="Chelsea", player="Moisés Caicedo", type="substitution"),
+                MatchEvent(minute=80, team="Arsenal", player="Ben White", type="red_card"),
+                MatchEvent(minute=82, team="Arsenal", player="Kai Havertz", type="var_check"),
             ],
         )
         man_city_vs_liverpool_finished = Match(
@@ -39,11 +48,21 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 19, 17, 30),
             status="finished",
             events=[
+                MatchEvent(minute=5, team="Manchester City", player="Rodri", type="corner"),
+                MatchEvent(minute=9, team="Liverpool", player="Trent Alexander-Arnold", type="throw_in"),
                 MatchEvent(minute=11, team="Manchester City", player="Erling Haaland", type="goal"),
                 MatchEvent(minute=27, team="Liverpool", player="Darwin Núñez", type="goal"),
+                MatchEvent(minute=30, team="Manchester City", player="Jack Grealish", type="foul"),
+                MatchEvent(minute=33, team="Liverpool", player="Andrew Robertson", type="handball"),
                 MatchEvent(minute=42, team="Manchester City", player="Phil Foden", type="goal"),
+                MatchEvent(minute=47, team="Manchester City", player="Ibrahima Konaté", type="own_goal"),
                 MatchEvent(minute=56, team="Liverpool", player="Mohamed Salah", type="goal"),
+                MatchEvent(minute=65, team="Manchester City", player="Rúben Dias", type="var"),
+                MatchEvent(minute=69, team="Liverpool", player="Alisson Becker", type="penalty_saved"),
+                MatchEvent(minute=74, team="Liverpool", player="Virgil van Dijk", type="yellow_card"),
+                MatchEvent(minute=77, team="Manchester City", player="Bernardo Silva", type="injury"),
                 MatchEvent(minute=89, team="Manchester City", player="Kevin De Bruyne", type="goal"),
+                MatchEvent(minute=90, team="Liverpool", player="Darwin Núñez", type="var_overturned"),
             ],
         )
 
@@ -68,7 +87,11 @@ def seed() -> None:
             status="finished",
             events=[
                 MatchEvent(minute=5, team="Atlético Madrid", player="Álvaro Morata", type="goal"),
+                MatchEvent(minute=12, team="Real Sociedad", player="Brais Méndez", type="corner"),
+                MatchEvent(minute=22, team="Atlético Madrid", player="Antoine Griezmann", type="free_kick"),
+                MatchEvent(minute=48, team="Real Sociedad", player="Robin Le Normand", type="handball"),
                 MatchEvent(minute=61, team="Real Sociedad", player="Takefusa Kubo", type="goal"),
+                MatchEvent(minute=70, team="Atlético Madrid", player="José María Giménez", type="injury"),
                 MatchEvent(minute=75, team="Real Sociedad", player="Mikel Merino", type="yellow_card"),
             ],
         )
@@ -83,8 +106,14 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 26, 21, 45),
             status="live",
             events=[
+                MatchEvent(minute=5, team="Inter", player="Federico Dimarco", type="corner"),
                 MatchEvent(minute=14, team="Inter", player="Lautaro Martínez", type="yellow_card"),
+                MatchEvent(minute=22, team="AC Milan", player="Theo Hernández", type="throw_in"),
                 MatchEvent(minute=33, team="AC Milan", player="Rafael Leão", type="goal"),
+                MatchEvent(minute=40, team="Inter", player="Marcus Thuram", type="injury"),
+                MatchEvent(minute=66, team="Inter", player="Hakan Çalhanoğlu", type="penalty_missed"),
+                MatchEvent(minute=72, team="AC Milan", player="Christian Pulisic", type="substitution"),
+                MatchEvent(minute=78, team="Inter", player="Stefan de Vrij", type="var_check"),
             ],
         )
         juve_vs_roma_scheduled = Match(
@@ -108,11 +137,21 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 18, 19, 30),
             status="finished",
             events=[
+                MatchEvent(minute=3, team="Bayern Munich", player="Joshua Kimmich", type="free_kick"),
                 MatchEvent(minute=7, team="Bayern Munich", player="Harry Kane", type="goal"),
+                MatchEvent(minute=16, team="Borussia Dortmund", player="Gregor Kobel", type="goal_kick"),
+                MatchEvent(minute=20, team="Borussia Dortmund", player="Mats Hummels", type="yellow_card"),
                 MatchEvent(minute=22, team="Borussia Dortmund", player="Marco Reus", type="goal"),
+                MatchEvent(minute=28, team="Bayern Munich", player="Alphonso Davies", type="handball"),
                 MatchEvent(minute=35, team="Bayern Munich", player="Jamal Musiala", type="goal"),
+                MatchEvent(minute=45, team="Bayern Munich", player="Julian Ryerson", type="own_goal"),
                 MatchEvent(minute=50, team="Bayern Munich", player="Kingsley Coman", type="goal"),
+                MatchEvent(minute=59, team="Bayern Munich", player="Leroy Sané", type="injury"),
+                MatchEvent(minute=63, team="Bayern Munich", player="Joshua Kimmich", type="foul"),
+                MatchEvent(minute=68, team="Borussia Dortmund", player="Niklas Süle", type="penalty_saved"),
+                MatchEvent(minute=70, team="Borussia Dortmund", player="Julian Brandt", type="substitution"),
                 MatchEvent(minute=78, team="Borussia Dortmund", player="Niclas Füllkrug", type="goal"),
+                MatchEvent(minute=82, team="Bayern Munich", player="Dayot Upamecano", type="var_overturned"),
                 MatchEvent(minute=90, team="Bayern Munich", player="Thomas Müller", type="goal"),
             ],
         )
@@ -125,8 +164,14 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 26, 21, 30),
             status="live",
             events=[
+                MatchEvent(minute=7, team="Bayer Leverkusen", player="Piero Hincapié", type="corner"),
                 MatchEvent(minute=17, team="RB Leipzig", player="Loïs Openda", type="goal"),
+                MatchEvent(minute=23, team="RB Leipzig", player="Dani Olmo", type="free_kick"),
                 MatchEvent(minute=44, team="Bayer Leverkusen", player="Florian Wirtz", type="goal"),
+                MatchEvent(minute=55, team="Bayer Leverkusen", player="Granit Xhaka", type="yellow_card"),
+                MatchEvent(minute=60, team="RB Leipzig", player="Willi Orbán", type="injury"),
+                MatchEvent(minute=68, team="Bayer Leverkusen", player="Jonas Hofmann", type="throw_in"),
+                MatchEvent(minute=72, team="RB Leipzig", player="Peter Gulácsi", type="goal_kick"),
             ],
         )
 
@@ -140,9 +185,17 @@ def seed() -> None:
             kickoff_time=datetime(2024, 10, 17, 21, 0),
             status="finished",
             events=[
+                MatchEvent(minute=4, team="Marseille", player="Jordan Veretout", type="corner"),
+                MatchEvent(minute=12, team="Marseille", player="Pierre-Emerick Aubameyang", type="offside"),
+                MatchEvent(minute=25, team="Paris Saint-Germain", player="Sergio Ramos", type="handball"),
                 MatchEvent(minute=31, team="Paris Saint-Germain", player="Kylian Mbappé", type="goal"),
+                MatchEvent(minute=45, team="Paris Saint-Germain", player="Gianluigi Donnarumma", type="penalty_saved"),
                 MatchEvent(minute=61, team="Paris Saint-Germain", player="Ousmane Dembélé", type="goal"),
+                MatchEvent(minute=68, team="Paris Saint-Germain", player="Achraf Hakimi", type="foul"),
+                MatchEvent(minute=70, team="Marseille", player="Pau López", type="goal_kick"),
                 MatchEvent(minute=75, team="Marseille", player="Jonathan Clauss", type="red_card"),
+                MatchEvent(minute=82, team="Paris Saint-Germain", player="Marco Asensio", type="injury"),
+                MatchEvent(minute=88, team="Paris Saint-Germain", player="Lucas Hernández", type="var_check"),
             ],
         )
         lyon_vs_nice_scheduled = Match(
