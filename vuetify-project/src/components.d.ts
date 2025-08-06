@@ -8,7 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    2: typeof import('./components/DateFilter copy 2.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    copy: typeof import('./components/DateFilter copy.vue')['default']
+    DateFilter: typeof import('./components/DateFilter.vue')['default']
+    'DateFilter copy': typeof import('./components/DateFilter copy.vue')['default']
+    'DateFilter copy 2': typeof import('./components/DateFilter copy 2.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
