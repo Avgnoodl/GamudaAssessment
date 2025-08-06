@@ -40,27 +40,38 @@
         md="6"
       >
         <v-card>
-          <v-card-title>
-            {{ match.home_team }} vs {{ match.away_team }}
+          <v-card-title class="d-flex justify-space-between align-center">
+            <span>{{ match.home_team }} vs {{ match.away_team }}</span>
+            <v-btn icon @click="toggle(match.id)">
+              <v-icon>{{ isExpanded(match.id) ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+            </v-btn>
           </v-card-title>
           <v-card-subtitle>
-            {{ formatKickoff(match.kickoff_time) }} — {{ match.status }}
+            {{ match.status }}
           </v-card-subtitle>
           <v-card-text>
             <div class="text-h5">
               {{ match.home_score }} - {{ match.away_score }}
             </div>
-            <v-list v-if="match.events.length > 0">
-              <v-list-item
-                v-for="(evt, idx) in match.events"
-                :key="idx"
-              >
-                <v-list-item-title>
-                  {{ evt.minute }}' {{ evt.player }} ({{ evt.team }})
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
           </v-card-text>
+          <v-expand-transition>
+            <div v-show="isExpanded(match.id)">
+              <v-divider class="my-2" />
+              <v-list v-if="goalEvents(match).length > 0">
+                <v-list-item
+                  v-for="(evt, idx) in goalEvents(match)"
+                  :key="idx"
+                >
+                  <v-list-item-title>
+                    {{ evt.minute }}' {{ evt.player }} ({{ evt.team }})
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+              <v-btn class="mt-2" color="primary" @click="goToMatch(match.id)">
+                More Details
+              </v-btn>
+            </div>
+          </v-expand-transition>
         </v-card>
       </v-col>
     </v-row>
@@ -69,6 +80,7 @@
 
 <script setup lang="ts">
   import { computed, onMounted, ref } from 'vue'
+  import { useRouter } from 'vue-router'
   import DateFilter from '@/components/DateFilter.vue'
 
   interface MatchEvent {
@@ -90,9 +102,11 @@
   }
 
   const matches = ref<Match[]>([])
+  const expanded = ref<Set<number>>(new Set())
   const league = ref<string | null>(null)
   const after = ref<string | null>(null)
   const before = ref<string | null>(null)
+  const router = useRouter()
 
   const leagues = computed(() =>
     Array.from(new Set(matches.value.map(m => m.league))),
@@ -115,8 +129,22 @@
     matches.value = await res.json()
   })
 
-  function formatKickoff (iso: string) {
-    return new Date(iso).toLocaleString()
+  function goalEvents (m: Match) {
+    return m.events.filter(e => e.type === 'goal')
+  }
+
+  function toggle (id: number) {
+    if (expanded.value.has(id))
+      expanded.value.delete(id)
+    else
+      expanded.value.add(id)
+  }
+
+  function isExpanded (id: number) {
+    return expanded.value.has(id)
+  }
+
+  function goToMatch (id: number) {
+    router.push(`/match/${id}`)
   }
 </script>
-
