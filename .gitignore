@@ -4,7 +4,4 @@ node_modules/
 **/node_modules/
 __pycache__/
 *.pyc
-backend/seed_db copy.py
-vuetify-project/src/components/DateFilter copy 2.vue
-vuetify-project/src/components/DateFilter copy.vue
-vuetify-project/src/pages/index copy.vue
+old_code/
