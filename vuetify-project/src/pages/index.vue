@@ -1,5 +1,9 @@
 <template>
   <v-container>
+    <v-row>
+      <v-col class="text-h4 mb-4"> Football Match Dashboard</v-col>
+    </v-row>
+    
     <v-select
       v-model="league"
       class="mb-4"
