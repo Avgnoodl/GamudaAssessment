@@ -1,0 +1,26 @@
+/* Global font utility classes for cross-page compatibility */
+
+.font-sm {
+  font-size: 0.875rem;
+}
+
+.font-md {
+  font-size: 1rem;
+}
+
+.font-lg {
+  font-size: 1.25rem;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
