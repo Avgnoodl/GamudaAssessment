@@ -28,5 +28,6 @@ class MatchEvent(Base):
     team = Column(String, nullable=False)
     player = Column(String, nullable=False)
     type = Column(String, nullable=False)
+    sub_in = Column(String, nullable=True)
 
     match = relationship("Match", back_populates="events")

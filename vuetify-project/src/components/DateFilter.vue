@@ -15,7 +15,6 @@
         clearable
         :label="label"
         prepend-inner-icon="mdi-calendar-clock"
-        style="max-width: 200px"
         @click:clear="clearDate"
       />
     </template>

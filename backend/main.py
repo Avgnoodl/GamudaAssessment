@@ -26,7 +26,7 @@ class MatchEvent(BaseModel):
     team: str
     player: str
     type: str
-
+    sub_in: str | None = None
     class Config:
         orm_mode = True
 
