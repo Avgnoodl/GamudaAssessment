@@ -17,3 +17,7 @@ pip install -r requirements.txt
 # 5. Run your FastAPI server
 
 uvicorn LoginPage:app --reload
+
+# 6. (Optional) Seed the database with mock data
+
+python seed_db.py

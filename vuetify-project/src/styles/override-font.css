@@ -1,0 +1,136 @@
+/* Global font utility classes for cross-page compatibility */
+/* -------------------------------------------------------------- */
+/* Original font imports - moved to top to ensure fonts load */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
+
+/* 1) Design tokens (variables) */
+:root {
+  /* Fonts */
+  --font-sans-inter: "Inter", sans-serif;
+  --font-sans-poppins: "Poppins", sans-serif;
+  --font-sans-nunito: "Nunito", sans-serif;
+  --font-sans-work-sans: "Work Sans", sans-serif;
+  --font-primary: var(--font-sans-poppins);
+
+  /* Colors - plaingrey*/
+  --app-grey: hsl(0, 0%, 21%);
+  --app-green: hsl(135, 83%, 23%);
+  --app-green-hover: hsl(135, 83%, 28%);
+
+}
+
+/* -------------------------------------------------------------- */
+/* Apply primary font to Vuetify components */
+.v-application,
+.v-application *,
+.v-dialog,
+.v-dialog *,
+.v-menu__content,
+.v-menu__content *,
+.v-overlay,
+.v-overlay * {
+  font-family: var(--font-primary) !important;
+}
+.v-application input,
+.v-application textarea,
+.v-application select,
+.v-application button {
+  font-family: inherit !important;
+}
+
+.font-sm {
+  font-size: 0.875rem;
+}
+
+.font-md {
+  font-size: 1rem;
+}
+
+.font-lg {
+  font-size: 1.25rem;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.match-card {
+  max-width: 700px !important;
+  margin: auto !important;
+  border-radius: 16px  !important;
+}
+
+.match-card:hover {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(-4px) !important;
+  transition: transform 0.2s ease-out !important;
+  
+  /* background-color: var(--app-green) !important; */
+  
+}
+
+.match-card .detail-button {
+  border-radius: 16px  !important;
+  background-color: var(--app-green)!important;
+  color: white !important;
+}
+
+.detail-button:hover {
+  background-color: hsl(135, 83%, 28%) !important;
+  color: white !important;
+}
+
+.hero {
+  margin-top: -64px; /* pull up by the default app-bar height */
+  background-color: var(--app-green) !important;
+
+}
+
+.header {
+  /* background-color: var(--app-green) !important; */
+  color: white !important;
+
+}
+
+.sidebar {
+  background-color: var(--app-grey) !important;
+  color: white !important;
+  
+}
+
+.match-hero {
+  /* background-image: url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80") !important; */
+  background-size: cover !important;
+  background-position: center !important;
+  color: white !important;
+  background-color: var(--app-green) !important ;
+  border-radius: 16px !important;
+}
+
+.match-events {
+  /* background-color: var(--app-green) !important; */
+  border-radius: 16px !important;
+  padding: 16px !important;
+}
+
+.about-card,.help-card {
+  margin: auto !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+}
+
+/* Mini-variant width adjustment */
+.v-navigation-drawer--mini-variant {
+  width: 56px !important;
+}
