@@ -1,6 +1,7 @@
-fastapi
+fastapi[all]
 uvicorn
 sqlalchemy
-databases[postgresql]
 psycopg2
+pydantic
 python-dotenv
+apscheduler 

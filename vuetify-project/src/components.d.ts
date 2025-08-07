@@ -10,13 +10,12 @@ declare module 'vue' {
   export interface GlobalComponents {
     2: typeof import('../../old_code/DateFilter copy 2.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
-    copy: typeof import('./components/Sidebar copy.vue')['default']
+    copy: typeof import('../../old_code/oldcode2/s/Sidebar copy.vue')['default']
     DateFilter: typeof import('./components/DateFilter.vue')['default']
     Header: typeof import('./components/Header.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./components/Sidebar.vue')['default']
-    'Sidebar copy': typeof import('./components/Sidebar copy.vue')['default']
   }
 }
