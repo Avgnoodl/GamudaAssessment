@@ -80,9 +80,9 @@ def maybe_add_event(match: DBMatch, db: Session) -> None:
     if current_minute(match.kickoff_time) >= 90:
         match.status = "finished"
         return
-
-    # RNG: 70 % of the time we do nothing
-    if random.random() > 0.50:  # 2 % chance to add an event at every polling event
+    
+    # 50 % chance to add an event at every polling event
+    if random.random() > 0.50: 
         return
 
     evt_type = random.choice(EVENT_TYPES)
