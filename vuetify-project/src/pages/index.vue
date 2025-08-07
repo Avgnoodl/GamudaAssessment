@@ -96,26 +96,16 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import DateFilter from '@/components/DateFilter.vue'
+import { useMatches } from '@/stores/useMatches'
 
-interface MatchEvent {
-  minute: number
-  team: string
-  player: string
-  type: string
-}
-interface Match {
-  id: number
-  league: string
-  home_team: string
-  away_team: string
-  home_score: number
-  away_score: number
-  kickoff_time: string
-  status: string
-  events: MatchEvent[]
-}
+const store = useMatches()
 
-const matches = ref<Match[]>([])
+onMounted(() => {
+  store.startPolling()
+})
+
+const matches = computed(() => store.matches)
+
 const expanded = ref<Set<number>>(new Set())
 const league = ref<string | null>(null)
 const after = ref<string | null>(null)
@@ -147,11 +137,6 @@ const filteredByStatus = computed(() => {
     else groups.scheduled.push(m)
   })
   return groups
-})
-
-onMounted(async () => {
-  const res = await fetch('http://localhost:8000/api/matches')
-  matches.value = await res.json()
 })
 
 function goalEvents(m: Match) {

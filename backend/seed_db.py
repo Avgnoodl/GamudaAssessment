@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from database import SessionLocal, create_tables, drop_tables
 from models import Match, MatchEvent
@@ -12,6 +12,8 @@ def seed() -> None:
 
     db = SessionLocal()
     try:
+        now = datetime.now(timezone.utc)   # aware datetime in UTC         # reference for dynamic kick-offs
+
         # ---------- Premier League ----------
         arsenal_vs_chelsea_live = Match(
             league="Premier League",
@@ -19,23 +21,21 @@ def seed() -> None:
             away_team="Chelsea",
             home_score=2,
             away_score=1,
-            kickoff_time=datetime(2024, 10, 26, 15, 0),
+            kickoff_time=now - timedelta(minutes=15),   # 15’ gone
             status="live",
+            home_players=[
+                "Bukayo Saka", "Gabriel Jesus", "Martin Ødegaard",
+                "Declan Rice", "Ben White", "Kai Havertz"
+            ],
+            away_players=[
+                "Raheem Sterling", "Cole Palmer", "Enzo Fernández",
+                "Reece James", "Ben Chilwell", "Moisés Caicedo"
+            ],
             events=[
                 MatchEvent(minute=5,  team="Chelsea",  player="Ben Chilwell",        type="corner"),
                 MatchEvent(minute=8,  team="Arsenal",  player="William Saliba",      type="handball"),
                 MatchEvent(minute=10, team="Chelsea",  player="Enzo Fernández",      type="offside"),
-                MatchEvent(minute=18, team="Arsenal",  player="Martin Ødegaard",     type="free_kick"),
-                MatchEvent(minute=23, team="Arsenal",  player="Bukayo Saka",         type="goal"),
-                MatchEvent(minute=37, team="Arsenal",  player="Gabriel Jesus",       type="penalty_goal"),
-                MatchEvent(minute=45, team="Chelsea",  player="Raheem Sterling",     type="goal"),
-                MatchEvent(minute=53, team="Arsenal",  player="Declan Rice",         type="yellow_card"),
-                MatchEvent(minute=58, team="Chelsea",  player="Reece James",         type="injury"),
-                MatchEvent(minute=65, team="Chelsea",  player="Cole Palmer",         type="penalty_missed"),
-                MatchEvent(minute=70, team="Arsenal",  player="Gabriel Martinelli",  type="goal"),
-                MatchEvent(minute=75, team="Chelsea",  player="Moisés Caicedo",      type="substitution", sub_in="Carney Chukwuemeka"),
-                MatchEvent(minute=80, team="Arsenal",  player="Ben White",           type="red_card"),
-                MatchEvent(minute=82, team="Arsenal",  player="Kai Havertz",         type="var_check"),
+                
             ],
         )
 
@@ -47,6 +47,8 @@ def seed() -> None:
             away_score=2,
             kickoff_time=datetime(2024, 10, 19, 17, 30),
             status="finished",
+            home_players=["Erling Haaland", "Phil Foden", "Rodri"],
+            away_players=["Mohamed Salah", "Darwin Núñez", "Trent Alexander-Arnold"],
             events=[
                 MatchEvent(minute=5,  team="Manchester City", player="Rodri",              type="corner"),
                 MatchEvent(minute=9,  team="Liverpool",       player="Trent Alexander-Arnold", type="throw_in"),
@@ -76,6 +78,8 @@ def seed() -> None:
             away_score=0,
             kickoff_time=datetime(2024, 10, 27, 18, 0),
             status="scheduled",
+            home_players=["Robert Lewandowski", "Pedri", "Frenkie de Jong"],
+            away_players=["Vinícius Júnior", "Jude Bellingham", "Luka Modrić"],
             events=[],
         )
 
@@ -87,6 +91,8 @@ def seed() -> None:
             away_score=1,
             kickoff_time=datetime(2024, 10, 20, 20, 0),
             status="finished",
+            home_players=["Takefusa Kubo", "Robin Le Normand"],
+            away_players=["Álvaro Morata", "Antoine Griezmann"],
             events=[
                 MatchEvent(minute=5,  team="Atlético Madrid", player="Álvaro Morata",     type="goal"),
                 MatchEvent(minute=12, team="Real Sociedad",   player="Brais Méndez",      type="corner"),
@@ -106,18 +112,15 @@ def seed() -> None:
             away_team="AC Milan",
             home_score=0,
             away_score=0,
-            kickoff_time=datetime(2024, 10, 26, 21, 45),
+            kickoff_time=now - timedelta(minutes=25),   # 25' gone
             status="live",
+            home_players=["Lautaro Martínez", "Hakan Çalhanoğlu", "Federico Dimarco"],
+            away_players=["Rafael Leão", "Theo Hernández", "Christian Pulisic"],
             events=[
                 MatchEvent(minute=5,  team="Inter",   player="Federico Dimarco", type="corner"),
                 MatchEvent(minute=14, team="Inter",   player="Lautaro Martínez", type="yellow_card"),
                 MatchEvent(minute=22, team="AC Milan",player="Theo Hernández",   type="throw_in"),
-                MatchEvent(minute=33, team="AC Milan",player="Rafael Leão",      type="goal"),
-                MatchEvent(minute=40, team="Inter",   player="Marcus Thuram",    type="injury"),
-                MatchEvent(minute=66, team="Inter",   player="Hakan Çalhanoğlu", type="penalty_missed"),
-                MatchEvent(minute=72, team="AC Milan",player="Christian Pulisic",type="substitution", sub_in="Samuel Chukwueze"),
-                MatchEvent(minute=78, team="Inter",   player="Stefan de Vrij",   type="var_check"),
-                MatchEvent(minute=79, team="Inter",   player="Marcus Thuram",    type="substitution", sub_in="Alexis Sánchez"),
+               
             ],
         )
 
@@ -129,6 +132,8 @@ def seed() -> None:
             away_score=0,
             kickoff_time=datetime(2024, 11, 3, 20, 45),
             status="scheduled",
+            home_players=["Dušan Vlahović", "Federico Chiesa"],
+            away_players=["Paulo Dybala", "Romelu Lukaku"],
             events=[],
         )
 
@@ -141,6 +146,8 @@ def seed() -> None:
             away_score=2,
             kickoff_time=datetime(2024, 10, 18, 19, 30),
             status="finished",
+            home_players=["Harry Kane", "Jamal Musiala"],
+            away_players=["Marco Reus", "Niclas Füllkrug"],
             events=[
                 MatchEvent(minute=3,  team="Bayern Munich",   player="Joshua Kimmich", type="free_kick"),
                 MatchEvent(minute=7,  team="Bayern Munich",   player="Harry Kane",     type="goal"),
@@ -168,8 +175,10 @@ def seed() -> None:
             away_team="RB Leipzig",
             home_score=1,
             away_score=1,
-            kickoff_time=datetime(2024, 10, 26, 21, 30),
+            kickoff_time= now - timedelta(minutes=70),   # 15’ gone
             status="live",
+            home_players=["Florian Wirtz", "Granit Xhaka"],
+            away_players=["Loïs Openda", "Dani Olmo"],
             events=[
                 MatchEvent(minute=7,  team="Bayer Leverkusen", player="Piero Hincapié", type="corner"),
                 MatchEvent(minute=17, team="RB Leipzig",      player="Loïs Openda",    type="goal"),
@@ -178,7 +187,6 @@ def seed() -> None:
                 MatchEvent(minute=55, team="Bayer Leverkusen", player="Granit Xhaka",  type="yellow_card"),
                 MatchEvent(minute=60, team="RB Leipzig",      player="Willi Orbán",    type="injury"),
                 MatchEvent(minute=68, team="Bayer Leverkusen", player="Jonas Hofmann", type="throw_in"),
-                MatchEvent(minute=72, team="RB Leipzig",      player="Peter Gulácsi",  type="goal_kick"),
             ],
         )
 
@@ -191,6 +199,8 @@ def seed() -> None:
             away_score=0,
             kickoff_time=datetime(2024, 10, 17, 21, 0),
             status="finished",
+            home_players=["Kylian Mbappé", "Ousmane Dembélé"],
+            away_players=["Pierre-Emerick Aubameyang", "Jordan Veretout"],
             events=[
                 MatchEvent(minute=4,  team="Marseille",            player="Jordan Veretout",   type="corner"),
                 MatchEvent(minute=12, team="Marseille",            player="Pierre-Emerick Aubameyang", type="offside"),
@@ -216,6 +226,8 @@ def seed() -> None:
             away_score=0,
             kickoff_time=datetime(2024, 11, 1, 20, 0),
             status="scheduled",
+            home_players=["Alexandre Lacazette"],
+            away_players=["Terem Moffi"],
             events=[],
         )
 

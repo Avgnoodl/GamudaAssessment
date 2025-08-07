@@ -1,4 +1,4 @@
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, ARRAY
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -13,11 +13,14 @@ class Match(Base):
     away_team = Column(String, nullable=False)
     home_score = Column(Integer, nullable=False)
     away_score = Column(Integer, nullable=False)
-    kickoff_time = Column(DateTime, nullable=False)
+    kickoff_time = Column(DateTime(timezone=True), nullable=False)
+
     status = Column(String, nullable=False)
 
     events = relationship("MatchEvent", back_populates="match", cascade="all, delete-orphan")
 
+    home_players = Column(ARRAY(String))
+    away_players = Column(ARRAY(String))
 
 class MatchEvent(Base):
     __tablename__ = "match_events"
