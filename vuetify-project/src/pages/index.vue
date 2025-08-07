@@ -1,6 +1,6 @@
 <template>
   <!-- Hero / Landing intro (full-width) -->
-  <v-sheet class="d-flex flex-column justify-center hero pt-2 pb-10" height="240" elevation="0">
+  <v-sheet class="d-flex flex-column justify-center hero pt-2 pb-10" height="160" elevation="0">
     <div class="w-100 text-center">
       <h1 class="display-2 font-weight-bold mb-2">
         Football Match Tracker
@@ -76,7 +76,7 @@
                         </v-list-item>
                       </v-list>
 
-                      <v-btn class="detail-button ma-4" color="primary" @click="goToMatch(match.id)">
+                      <v-btn class="detail-button ma-4"  @click="goToMatch(match.id)">
                         More Details
                       </v-btn>
                     </v-sheet>

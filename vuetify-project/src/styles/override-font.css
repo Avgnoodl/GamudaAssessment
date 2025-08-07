@@ -16,7 +16,10 @@
   --font-primary: var(--font-sans-poppins);
 
   /* Colors - plaingrey*/
-  --hover-grey: hsl(0, 0%, 21%);
+  --app-grey: hsl(0, 0%, 21%);
+  --app-green: hsl(135, 83%, 23%);
+  --app-green-hover: hsl(135, 83%, 28%);
+
 }
 
 /* -------------------------------------------------------------- */
@@ -73,32 +76,37 @@
   transform: translateY(-4px) !important;
   transition: transform 0.2s ease-out !important;
   
-  /* background-color: var(--hover-grey) !important; */
+  /* background-color: var(--app-green) !important; */
   
 }
 
 .match-card .detail-button {
   border-radius: 16px  !important;
-  background-color:  hsl(162, 100%, 62%) !important;
-  color: black !important;
+  background-color: var(--app-green)!important;
+  color: white !important;
 }
 
+.detail-button:hover {
+  background-color: hsl(135, 83%, 28%) !important;
+  color: white !important;
+}
 
 .hero {
   margin-top: -64px; /* pull up by the default app-bar height */
-  background-color: grey !important;
+  background-color: var(--app-green) !important;
 
 }
 
 .header {
-  background-color: var(--hover-grey) !important;
+  /* background-color: var(--app-green) !important; */
   color: white !important;
-  padding: 16px !important;
+
 }
 
 .sidebar {
-  background-color: var(--hover-grey) !important;
+  background-color: var(--app-grey) !important;
   color: white !important;
+  
 }
 
 .match-hero {
@@ -106,12 +114,23 @@
   background-size: cover !important;
   background-position: center !important;
   color: white !important;
-  background-color: hsl(150, 89%, 28%) !important ;
+  background-color: var(--app-green) !important ;
   border-radius: 16px !important;
 }
 
 .match-events {
-  /* background-color: var(--hover-grey) !important; */
+  /* background-color: var(--app-green) !important; */
   border-radius: 16px !important;
   padding: 16px !important;
+}
+
+.about-card,.help-card {
+  margin: auto !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+}
+
+/* Mini-variant width adjustment */
+.v-navigation-drawer--mini-variant {
+  width: 56px !important;
 }

@@ -4,25 +4,26 @@
     temporary
     v-model="drawer"
     :mini-variant="!drawer"
-    color="surface"
+    
     elevation="2"
+    class="sidebar d-flex flex-column "
   >
     <v-list nav dense>
-      <v-list-item link @click="navigate('home')">
+      <v-list-item link @click="navigate('/')">
         <v-list-item-icon>
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
         <v-list-item-title>Homepage</v-list-item-title>
       </v-list-item>
 
-      <v-list-item link @click="navigate('team-stats')">
+      <v-list-item link @click="navigate('/team-stats')">
         <v-list-item-icon>
           <v-icon>mdi-chart-bar</v-icon>
         </v-list-item-icon>
         <v-list-item-title>Team Stats</v-list-item-title>
       </v-list-item>
 
-      <v-list-item link @click="navigate('league-table')">
+      <v-list-item link @click="navigate('/league-table')">
         <v-list-item-icon>
           <v-icon>mdi-format-list-numbered</v-icon>
         </v-list-item-icon>
@@ -31,13 +32,13 @@
 
       <!-- Help & About Links -->
       <v-divider class="my-2" />
-      <v-list-item link @click="navigate('help')">
+      <v-list-item link @click="navigate('/HelpPage')">
         <v-list-item-icon>
           <v-icon>mdi-help-circle-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-title>Help</v-list-item-title>
       </v-list-item>
-      <v-list-item link @click="navigate('about')">
+      <v-list-item link @click="navigate('/AboutPage')">
         <v-list-item-icon>
           <v-icon>mdi-information-outline</v-icon>
         </v-list-item-icon>
@@ -46,7 +47,7 @@
     </v-list>
 
     <!-- Footer or Misc. Section -->
-    <v-divider class="my-4" />
+    <v-divider class="my-4 " />
     <div class="px-4 text-caption">
       © 2025 Football Tracker
     </div>
@@ -70,19 +71,14 @@ const drawer = computed({
 })
 
 const router = useRouter()
-function navigate(name: string) {
+function navigate(path: string) {
   // close drawer then navigate
   emit('update:modelValue', false)
-  router.push({ name })
+  router.push({ path })
 }
 </script>
 
 <style scoped>
-/* Mini-variant width adjustment */
-.v-navigation-drawer--mini-variant {
-  width: 56px !important;
-}
-.v-main__wrap {
-  margin-left: 0 !important;
-}
+
+
 </style>
