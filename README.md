@@ -55,12 +55,11 @@ GAMUDAASSESSMENT/
 │       ├── pages/               # All routed pages (auto-imported by `vue-router/auto`)
 │       │   ├── match/
 │       │   │   └── [id].vue             # Match detail page showing event timeline
-│       │   ├── dashboard.vue           # Main homepage with match listing + filters
 │       │   ├── league-table.vue        # League standings (auto-sorted by points)
 │       │   ├── team-stats.vue          # Team cards with W/D/L/Points + view matches
 │       │   ├── HelpPage.vue            # Help + keyboard shortcuts
 │       │   ├── AboutPage.vue           # Explanation of app scope and mock data
-│       │   └── index.vue               # Renders <dashboard.vue> inside hero layout
+│       │   └── index.vue               # Main homepage with match listing + filters
 │
 │       ├── plugins/             # Vuetify config, can be expanded for global plugins
 │
@@ -208,7 +207,7 @@ export const useMatches = defineStore("matches", {
 ---
 
 ## 6 Screenshots
- - screenshots of the application are stored in the screenshots folder
+ - screenshots of the application are stored in the screenshots folder.
 
 ## 7 Short Reflection (Next Features)
 Current app limitations:
